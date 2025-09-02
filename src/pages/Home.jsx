@@ -1,14 +1,16 @@
 import React from 'react'
-import { ServicesHook } from '../context/ServiceContext'
+import { useServices } from '../context/ServiceContext'
 
 function Home() {
-    const { services, addServices, removeServices } = ServicesHook()
+    const { services, addService, removeService } = useServices()
     return (
         <div className='flex flex-col justify-center items-center h-full gap-8'>
-            <div>Hello</div>
-            {services.forEach((service, index) => (
-                <div key={service.uuid}>{service.name} </div>
-            ))}
+            <div className='heading'>Services</div>
+            <div className='border-2 border-accent'>
+                {services.map((service) => (
+                    <div key={service.uuid}>{service.name}</div>
+                ))}
+            </div>
         </div>
     )
 }

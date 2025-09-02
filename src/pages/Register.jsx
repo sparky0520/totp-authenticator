@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { generateTOTP } from '../lib/Totp'
-import { ServicesHook } from '../context/ServiceContext'
+import { useServices } from '../context/ServiceContext'
+import { Link } from 'react-router-dom'
 
 function Register() {
-    const { services, addService, removeService } = ServicesHook()
+    const { services, addService, removeService } = useServices()
 
     const [secret, setSecret] = useState('')
     const [name, setName] = useState('')
@@ -41,6 +42,7 @@ function Register() {
         console.log(secret)
 
         addService({ uuid, name, secret })
+        console.log(services)
 
         // start countdown
         countDown()
@@ -68,6 +70,7 @@ function Register() {
             <div>
                 Valid for <span className='sub-heading'>{timeValid === null ? "-" : timeValid}</span> seconds
             </div>
+            <Link to={'/'}>Home Screen</Link>
         </div>
     )
 }
