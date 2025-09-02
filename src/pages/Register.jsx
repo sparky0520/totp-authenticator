@@ -49,15 +49,15 @@ function Register() {
     }
 
     return (
-        <div className='flex flex-col justify-center items-center h-full gap-8'>
+        <div className='flex flex-col items-center h-full gap-8'>
             <div className='heading'>Register new service</div>
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-2 items-center'>
                 <div className='sub-heading'>
                     Enter service name
                 </div>
                 <input type='text' value={name} onChange={e => setName(e.target.value)} className='text-center px-2 py-1 border-b-2 rounded-md sub-heading' />
             </div>
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-2 items-center'>
                 <div className='sub-heading'>
                     Enter secret
                 </div>

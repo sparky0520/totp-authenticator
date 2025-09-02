@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound"
 
 function App() {
   return (
-    <div className='flex flex-col h-screen p-6'>
+    <div className='flex flex-col h-screen p-6 gap-8'>
       <div className="flex flex-col items-center gap-2">
         <div className='heading'>TOTP Generator</div>
         <div>Generate TOTPs for 2 Factor Authentication</div>
