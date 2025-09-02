@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1e90ff;
+  --color-accent: #ff6347;
+  --radius-lg: 1.5rem;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700;
+  }
+
+  .heading{
+    @apply text-3xl font-bold text-gray-700
+  }
+
+  .sub-heading{
+    @apply text-xl font-semibold text-gray-700
+  }
+
+  .card {
+    @apply p-6 shadow-lg rounded-xl bg-white;
+  }
+}
