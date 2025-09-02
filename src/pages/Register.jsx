@@ -70,7 +70,7 @@ function Register() {
             <div>
                 Valid for <span className='sub-heading'>{timeValid === null ? "-" : timeValid}</span> seconds
             </div>
-            <Link to={'/'}>Home Screen</Link>
+            <Link to={'/'} className='btn-secondary'>Home Screen</Link>
         </div>
     )
 }

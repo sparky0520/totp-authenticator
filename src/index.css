@@ -11,6 +11,10 @@
     @apply bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700;
   }
 
+  .btn-secondary {
+    @apply border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-all;
+  }
+
   .heading{
     @apply text-3xl font-bold text-gray-700
   }
