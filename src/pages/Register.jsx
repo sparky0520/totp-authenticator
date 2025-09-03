@@ -10,6 +10,9 @@ function Register() {
   const [name, setName] = useState("");
 
   function handleGenerate() {
+    // pre-calculating uuid to save valid time
+    const uuid = crypto.randomUUID();
+
     // generate otp
     const { otp, expires } = generateTOTP(secret);
     console.log(`OTP: ${otp}`);
@@ -18,7 +21,6 @@ function Register() {
     console.log(`Time Left: ${(expires - Date.now()) / 1000}`);
 
     // add a new service
-    const uuid = crypto.randomUUID();
     const payload = { uuid, name, secret, otp, expires };
     addService(payload);
   }

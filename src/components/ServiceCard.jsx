@@ -8,22 +8,18 @@ function ServiceCard({ service }) {
   const [timeValid, setTimeValid] = useState(calculateTimeLeft);
 
   useEffect(() => {
-    let interval = null;
-
-    if (timeValid > 0) {
-      interval = setInterval(() => {
-        setTimeValid((prev) => {
-          if (prev <= 1) {
-            clearInterval(interval);
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
+    const interval = setInterval(() => {
+      const remaining = Math.floor((service.expires - Date.now()) / 1000);
+      if (remaining <= 0) {
+        setTimeValid(0);
+        clearInterval(interval);
+      } else {
+        setTimeValid(remaining);
+      }
+    }, 1000);
 
     return () => clearInterval(interval);
-  }, [service.expires]); // reset timer if expires changes
+  }, [service.expires]);
 
   return (
     <div className="flex justify-between gap-12 border-[1px] card">

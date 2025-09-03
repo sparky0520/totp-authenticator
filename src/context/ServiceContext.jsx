@@ -20,7 +20,7 @@ export function ServiceProvider({ children }) {
   }, [services]);
 
   // Functions to manipulate the state
-  const addService = (service) => {
+  const addService = async (service) => {
     setServices((prev) => [...prev, service]);
   };
 
