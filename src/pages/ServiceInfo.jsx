@@ -4,35 +4,45 @@ import { useServices } from "../context/ServiceContext";
 import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { generateTOTP } from "../lib/Totp";
 
 function ServiceInfo() {
   const { services, removeService, updateService } = useServices();
   const { uuid } = useParams();
-  const service = services.find((service) => service.uuid === uuid);
+  const [service, setService] = useState(
+    services.find((service) => service.uuid === uuid)
+  );
 
   if (!service) {
     return <div className="text-center sub-heading">Not found</div>;
   }
 
-  const [name, setName] = useState(service.name);
   let navigate = useNavigate();
   const inputRef = useRef(null);
-
   const [timeValid, setTimeValid] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const remaining = Math.floor((service.expires - Date.now()) / 1000);
       if (remaining <= 0) {
-        setTimeValid(0);
-        clearInterval(interval);
+        // set time
+        setTimeValid(null);
+        // generate otp
+        const { otp, expires } = generateTOTP(service.secret);
+        // update service
+        let temp = service;
+        temp.otp = otp;
+        temp.expires = expires;
+        setService(temp);
+        updateService(temp);
       } else {
         setTimeValid(remaining);
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [service.expires]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function handleDelete() {
     removeService(uuid);
@@ -46,15 +56,13 @@ function ServiceInfo() {
           ref={inputRef}
           className="heading border-0 w-60 text-center"
           type="text"
-          value={name}
-          onChange={(e) =>
-            setName(() => {
-              let temp = service;
-              temp.name = e.target.value;
-              updateService(temp);
-              return e.target.value;
-            })
-          }
+          value={service.name}
+          onChange={(e) => {
+            let temp = service;
+            temp.name = e.target.value;
+            setService(temp);
+            updateService(temp);
+          }}
         ></input>
         <FontAwesomeIcon icon={faTrash} onClick={handleDelete} />
         <FontAwesomeIcon
@@ -66,7 +74,8 @@ function ServiceInfo() {
         Current OTP: <span className="sub-heading">{service.otp}</span>
       </div>
       <div>
-        Valid for: <span className="sub-heading">{timeValid ?? "-"}</span>
+        Valid for:{" "}
+        <span className="sub-heading">{timeValid ?? "-"} seconds</span>
       </div>
       <Link to={"/"} className="btn-secondary">
         Home
