@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function ServiceInfo() {
-  const { services, removeService } = useServices();
+  const { services, removeService, updateService } = useServices();
   const { uuid } = useParams();
   const service = services.find((service) => service.uuid === uuid);
 
@@ -53,8 +53,9 @@ function ServiceInfo() {
           value={name}
           onChange={(e) =>
             setName(() => {
-              // BUG: only temporarily changes
-              service.name = e.target.value;
+              let temp = service;
+              temp.name = e.target.value;
+              updateService(temp);
               return e.target.value;
             })
           }

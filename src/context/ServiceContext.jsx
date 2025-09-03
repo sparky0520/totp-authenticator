@@ -28,10 +28,18 @@ export function ServiceProvider({ children }) {
     setServices((prev) => prev.filter((service) => service.uuid != serviceId));
   };
 
-  // const updateService = (service) => {};
+  const updateService = (updatedService) => {
+    setServices((prev) =>
+      prev.map((service) =>
+        service.uuid === updatedService.uuid ? updatedService : service
+      )
+    );
+  };
 
   return (
-    <ServiceContext.Provider value={{ services, addService, removeService }}>
+    <ServiceContext.Provider
+      value={{ services, addService, removeService, updateService }}
+    >
       {children}
     </ServiceContext.Provider>
   );
