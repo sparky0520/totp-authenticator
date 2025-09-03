@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 // create context
 const ServiceContext = createContext();
@@ -20,7 +20,7 @@ export function ServiceProvider({ children }) {
   }, [services]);
 
   // Functions to manipulate the state
-  const addService = async (service) => {
+  const addService = (service) => {
     setServices((prev) => [...prev, service]);
   };
 
