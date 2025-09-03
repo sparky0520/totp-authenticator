@@ -11,7 +11,9 @@ function Home() {
       <div className="flex flex-col gap-4">
         {services.length > 0
           ? services.map((service) => (
-              <ServiceCard key={service.uuid} service={service} />
+              <Link to={`/${service.uuid}`} key={service.uuid}>
+                <ServiceCard service={service} />
+              </Link>
             ))
           : "No services registered."}
       </div>

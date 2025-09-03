@@ -15,7 +15,7 @@ export function ServiceProvider({ children }) {
   });
 
   useEffect(() => {
-    // Save to localStorage whenever items changes
+    // Save to localStorage whenever items changes (in the bg after rendering complete)
     localStorage.setItem("services", JSON.stringify(services));
   }, [services]);
 

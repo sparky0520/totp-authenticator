@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
-import EditService from "./pages/EditService";
+import ServiceInfo from "./pages/ServiceInfo";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/edit" element={<EditService />} />
+        <Route path="/:uuid" element={<ServiceInfo />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
