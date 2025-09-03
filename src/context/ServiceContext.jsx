@@ -25,7 +25,7 @@ export function ServiceProvider({ children }) {
   };
 
   const removeService = (serviceId) => {
-    setServices((prev) => prev.filter((service) => service.id != serviceId));
+    setServices((prev) => prev.filter((service) => service.uuid != serviceId));
   };
 
   return (
