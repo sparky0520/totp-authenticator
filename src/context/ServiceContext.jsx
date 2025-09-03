@@ -1,26 +1,36 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 // create context
-const ServiceContext = createContext()
+const ServiceContext = createContext();
 
-// custom hook 
-export const useServices = () => useContext(ServiceContext)
+// custom hook
+// eslint-disable-next-line react-refresh/only-export-components
+export const useServices = () => useContext(ServiceContext);
 
 export function ServiceProvider({ children }) {
-    const [services, setServices] = useState([])
+  const [services, setServices] = useState(() => {
+    // check for locally saved services
+    const saved = localStorage.getItem("services");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-    // Functions to manipulate the state
-    const addService = (service) => {
-        setServices(prev => [...prev, service])
-    }
+  useEffect(() => {
+    // Save to localStorage whenever items changes
+    localStorage.setItem("services", JSON.stringify(services));
+  }, [services]);
 
-    const removeService = (serviceId) => {
-        setServices(prev => prev.filter(service => service.id != serviceId))
-    }
+  // Functions to manipulate the state
+  const addService = (service) => {
+    setServices((prev) => [...prev, service]);
+  };
 
-    return (
-        <ServiceContext.Provider value={{ services, addService, removeService }}>
-            {children}
-        </ServiceContext.Provider>
-    )
+  const removeService = (serviceId) => {
+    setServices((prev) => prev.filter((service) => service.id != serviceId));
+  };
+
+  return (
+    <ServiceContext.Provider value={{ services, addService, removeService }}>
+      {children}
+    </ServiceContext.Provider>
+  );
 }
