@@ -44,7 +44,7 @@ function ServiceInfo() {
       <div className="flex gap-4 items-center">
         <input
           ref={inputRef}
-          className="heading border-0 w-max"
+          className="heading border-0 w-60 text-center"
           type="text"
           value={name}
           onChange={(e) =>
