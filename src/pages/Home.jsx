@@ -6,7 +6,7 @@ function Home() {
   const { services } = useServices();
 
   return (
-    <div className="flex flex-col items-center h-full w-full gap-8">
+    <div className="flex flex-col items-center h-full w-full gap-8 pb-6">
       <div className="heading">Services</div>
       <div className="flex flex-col gap-4">
         {services.length > 0

@@ -46,7 +46,7 @@ function Register() {
           className="text-center px-2 py-1 border-b-2 rounded-md sub-heading"
         />
       </div>
-      <div className="flex justify-between gap-12 ">
+      <div className="flex justify-between gap-12 pb-6">
         <button onClick={handleGenerate} className="btn-primary">
           Register Service
         </button>
