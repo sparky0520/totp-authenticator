@@ -1,12 +1,15 @@
-# React + Vite
+# TOTP Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+fun project to generate a time based one time password (TOTP, [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238))
 
-Currently, two official plugins are available:
+## How to use
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+enter your secret phrase to generate 2fa codes for app sign-ins like github and anything which required Microsoft/Google Authenticator apps.
 
-## Expanding the ESLint configuration
+## tech stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+react, yes.
+
+## future vision
+
+refine the UI, maybe a chrome extension (and a mobile app. ok stop)
