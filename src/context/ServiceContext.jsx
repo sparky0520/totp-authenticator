@@ -28,6 +28,8 @@ export function ServiceProvider({ children }) {
     setServices((prev) => prev.filter((service) => service.uuid != serviceId));
   };
 
+  // const updateService = (service) => {};
+
   return (
     <ServiceContext.Provider value={{ services, addService, removeService }}>
       {children}

@@ -53,6 +53,7 @@ function ServiceInfo() {
           value={name}
           onChange={(e) =>
             setName(() => {
+              // BUG: only temporarily changes
               service.name = e.target.value;
               return e.target.value;
             })
