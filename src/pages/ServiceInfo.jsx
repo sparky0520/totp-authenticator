@@ -18,11 +18,7 @@ function ServiceInfo() {
   let navigate = useNavigate();
   const inputRef = useRef(null);
 
-  const calculateTimeLeft = () => {
-    const millisecondsLeft = service.expires - Date.now();
-    return millisecondsLeft > 0 ? Math.floor(millisecondsLeft / 1000) : 0;
-  };
-  const [timeValid, setTimeValid] = useState(calculateTimeLeft);
+  const [timeValid, setTimeValid] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -70,8 +66,7 @@ function ServiceInfo() {
         Current OTP: <span className="sub-heading">{service.otp}</span>
       </div>
       <div>
-        Valid for:{" "}
-        <span className="sub-heading">{timeValid === 0 ? "-" : timeValid}</span>
+        Valid for: <span className="sub-heading">{timeValid ?? "-"}</span>
       </div>
       <Link to={"/"} className="btn-secondary">
         Home
