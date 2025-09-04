@@ -1,8 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import NotFound from "./pages/NotFound";
-import ServiceInfo from "./pages/ServiceInfo";
+import React, { lazy, Suspense } from "react";
+
+// Lazy load the components (not bundled together, faster load speeds)
+const Home = lazy(() => import("./pages/Home"));
+const Register = lazy(() => import("./pages/Register"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const ServiceInfo = lazy(() => import("./pages/ServiceInfo"));
 
 function App() {
   return (
@@ -11,12 +14,14 @@ function App() {
         <div className="heading">TOTP Generator</div>
         <div>Generate TOTPs for 2 Factor Authentication</div>
       </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/:uuid" element={<ServiceInfo />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={<div className="text-center">Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/:uuid" element={<ServiceInfo />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
